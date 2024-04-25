@@ -4,14 +4,18 @@
 <h1>Finch List</h1>
 
 {% for finch in finches %}
+
 <div class="card">
+    <a href="finches/{{ finch.id }}"></a>
     <div class="card-content">
         <span class="card-title">{{ finch.name}}</span>
-    <p>Subfamily: {{finch.subfamily}}</p>
-    <p>Description: {{finch.description}}</p>
-    <p>Age: {{finch.age}} </p>
+        <p>Subfamily: {{finch.subfamily}}</p>
+        <p>Description: {{finch.description}}</p>
+        <p>Habitat: {{finch.habitat}} </p>
     </div>
+    </a>
 </div>
+
 {% endfor %}
 
 {% endblock %}

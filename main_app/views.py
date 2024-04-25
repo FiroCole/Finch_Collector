@@ -1,9 +1,5 @@
 from django.shortcuts import render
-
-finches = [
-  {'name': 'Lolo', 'subfamily': 'tabby', 'description': 'furry little demon', 'age': 3},
-  {'name': 'Sachi', 'subfamily': 'calico', 'description': 'gentle and loving', 'age': 2},
-]
+from .models import Finch
 
 # Define the home view
 def home(request):
@@ -17,7 +13,13 @@ def about(request):
 
 # Define the home view
 def finches_index(request):
-  # Include an .html file extension - unlike when rendering EJS templates
+  finches = Finch.objects.all()
   return render(request, 'finches/finches_index.html', {
     'finches': finches
+  }) 
+  
+def finches_detail(request):
+  finch = Finch.objects.get(id=finch_id)
+  return render(request, 'finches/detail.html', {
+    'finch': finch
   }) 
