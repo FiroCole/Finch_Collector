@@ -13,4 +13,11 @@
     {{ form.as_p }}
     <input type="submit" value="Submit!" class="btn">
 </form>
+
+<script>
+      const selectHabitatEl = document.getElementById('id_habitat');
+      M.FormSelect.init(selectHabitatEl);
+      const selectSubfamiltyEl = document.getElementById('id_subfamily');
+      M.FormSelect.init(selectSubfamiltyEl);
+</script>
 {% endblock %}

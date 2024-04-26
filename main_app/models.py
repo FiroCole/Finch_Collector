@@ -7,8 +7,15 @@ MEALS = (
     ('L', 'Lunch'),
     ('D', 'Dinner')
 )
-
+SONG_CHOICES = (
+        ("Mating Song", "Mating Song"),
+        ("Warbling Song", "Warbling Song"),
+        ("Territory Song", "Territory Song"),
+)
 # Create your models here.
+class Song(models.Model):
+    song = models.CharField(max_length=100, choices =SONG_CHOICES, default=SONG_CHOICES[0][0])
+    
 class Finch(models.Model):
     FINCH_SUBFAMILY_CHOICES = [
         ("Fringillinae", "Fringillinae"),
@@ -23,10 +30,10 @@ class Finch(models.Model):
         ("Unknown", "Unknown"),
     ]
     name = models.CharField(max_length=100)
-    subfamily = models.CharField(max_length=100)
+    subfamily = models.CharField(max_length=100, choices= FINCH_SUBFAMILY_CHOICES)
     description = models.TextField(max_length=2500)
-    habitat = models.CharField(max_length=100)
-    
+    habitat = models.CharField(max_length=100, choices=FINCH_HABITAT_CHOICES)
+    songs = models.ManyToManyField(Song)
     def __str__(self):
         return self.name
     
@@ -48,3 +55,7 @@ class Feeding(models.Model):
   
   def __str__(self):
       return f"{self.get_meal_display()} on {self.date}"
+  
+  class Meta:
+      ordering = ['-date']
+      
