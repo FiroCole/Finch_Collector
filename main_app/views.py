@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Finch
+from .models import Finch, Song
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from .forms import FeedingForm
 
 # Define the home view
@@ -50,3 +51,20 @@ class FinchDelete(DeleteView):
   model = Finch
   success_url = '/finches'
   
+class SongList(ListView):
+  model = Song
+
+class SongDetail(DetailView):
+  model = Song
+
+class SongCreate(CreateView):
+  model = Song
+  fields = '__all__'
+
+class SongUpdate(UpdateView):
+  model = Song
+  fields = ['song']
+
+class SongDelete(DeleteView):
+  model = Song
+  success_url = '/songs'

@@ -16,6 +16,13 @@ SONG_CHOICES = (
 class Song(models.Model):
     song = models.CharField(max_length=100, choices =SONG_CHOICES, default=SONG_CHOICES[0][0])
     
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('songs_detail', kwargs={
+            'pk': self.id})
+    
 class Finch(models.Model):
     FINCH_SUBFAMILY_CHOICES = [
         ("Fringillinae", "Fringillinae"),
@@ -35,11 +42,11 @@ class Finch(models.Model):
     habitat = models.CharField(max_length=100, choices=FINCH_HABITAT_CHOICES)
     songs = models.ManyToManyField(Song)
     def __str__(self):
-        return self.name
+        return f'{self.name} ({self.id})'
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={
-            'finch_id': self.id    })
+            'finch_id': self.id})
 
 class Feeding(models.Model):
   date = models.DateField('Feeding Date')

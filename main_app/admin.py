@@ -5,3 +5,4 @@ from .models import Finch, Feeding
 # Register your models here
 admin.site.register(Finch)
 admin.site.register(Feeding)
+admin.site.register(Song)
