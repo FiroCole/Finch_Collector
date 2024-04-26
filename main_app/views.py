@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from .models import Finch
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import DeleteView
+from django.views.generic.edit import UpdateView
+
 
 # Define the home view
 def home(request):
@@ -23,3 +27,8 @@ def finches_detail(request, finch_id):
   return render(request, 'finches/detail.html', {
     'finch': finch
   }) 
+
+Class finhces_create(CreateView):
+  model = Finch
+  fields = '__all__'
+  
