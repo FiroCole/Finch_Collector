@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
 
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
   <header class="navbar-fixed">
     <nav>
@@ -21,6 +23,8 @@
         </ul>
         <ul class="right">
           <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'songs_create' %}">Add a Song</a></li>
+          <li><a href="{% url 'songs_index' %}">View All Songs</a></li>
           <li><a href="{% url 'finches_create' %}">Add a Finch</a></li>
           <li><a href="{% url 'index' %}">View All My Finches</a></li>
         </ul>
@@ -35,4 +39,5 @@
     <div class="right">All Rights Reserved, &copy; 2021 Finch Collector &nbsp;</div>
   </footer>
 </body>
+
 </html>

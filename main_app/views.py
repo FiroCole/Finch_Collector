@@ -23,9 +23,12 @@ def finches_index(request):
   
 def finches_detail(request, finch_id):
   finch = Finch.objects.get(id=finch_id)
+  id_list = finch.songs.all().values_list('id')
+  songs_finch_doesnt_have = Song.objects.exclude(id__in=id_list)
+  
   feeding_form = FeedingForm()
   return render(request, 'finches/detail.html', {
-    'finch': finch, 'feeding_form': feeding_form
+    'finch': finch, 'feeding_form': feeding_form, 'songs':songs_finch_doesnt_have
   }) 
 
 def add_feeding(request, finch_id):
@@ -40,7 +43,7 @@ def add_feeding(request, finch_id):
   
 class FinchCreate(CreateView):
   model = Finch
-  fields = '__all__'
+  fields = ['name', 'subfamily', 'description', 'habitat']
   success_url = '/finches/{id}'
   
 class FinchUpdate(UpdateView):
@@ -68,3 +71,8 @@ class SongUpdate(UpdateView):
 class SongDelete(DeleteView):
   model = Song
   success_url = '/songs'
+  
+  
+def assoc_song(request, finch_id, song_id):
+  Finch.objects.get(id=finch_id).songs.add(song_id)
+  return redirect('detail', finch_id=finch_id)

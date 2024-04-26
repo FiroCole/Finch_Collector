@@ -17,7 +17,7 @@ class Song(models.Model):
     song = models.CharField(max_length=100, choices =SONG_CHOICES, default=SONG_CHOICES[0][0])
     
     def __str__(self):
-        return self.name
+        return self.song
     
     def get_absolute_url(self):
         return reverse('songs_detail', kwargs={
